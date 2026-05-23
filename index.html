@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -253,9 +252,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* gap: 20px; */
-            /* width: 100%; */
-            max-width: 900px;
+            width: 100%;
+            max-width: 2000px;
         }
         .program-title {
             font-size: 2.5rem;
@@ -267,21 +265,21 @@
             flex-direction: column;
             width: 100%;
             padding: 20px 0;
+            gap: 25px;
         }
         .timeline-item {
             display: flex;
             align-items: center;
             gap: 20px;
             width: 100%;
-            justify-content: space-between;
-            flex-wrap: nowrap; /* Запрещаем перенос элементов */
+            justify-content: center;
         }
         .timeline-item .time {
             font-weight: bold;
             font-size: 1.3rem;
             min-width: 100px;
             text-align: right;
-            flex-shrink: 0; /* Запрещаем сжатие */
+            flex-shrink: 0;
         }
         .timeline-item .event {
             flex: 1;
@@ -298,26 +296,23 @@
         }
         .timeline-photo {
             width: 90px;
-            height: 90px;
-            /* border-radius: 50% / 50% 50% 50% 50%; */
+            height: 130px;
+            border-radius: 50% / 50% 50% 50% 50%;
             object-fit: cover;
-            flex-shrink: 0; /* Запрещаем сжатие фото */
+            flex-shrink: 0;
             border: 2px solid #ddd;
         }
 
-        /* Чередование фото (слева/справа) */
-        /* .timeline-item:nth-child(odd) {
+        /* Все фото справа от текста */
+        .timeline-item {
             flex-direction: row;
         }
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
+        .timeline-item .time {
+            text-align: right;
         }
-        .timeline-item:nth-child(even) .time {
+        .timeline-item .event {
             text-align: left;
         }
-        .timeline-item:nth-child(even) .event {
-            text-align: right;
-        } */
 
         /* ===== Слайд 6 ===== */
         #slide6 {
@@ -371,21 +366,6 @@
             line-height: 1.6;
             margin-bottom: 30px;
         }
-        .color-palette {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .color-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .color-1 { background-color: #2e8b57; }
-        .color-2 { background-color: #a8e6cf; }
-        .color-3 { background-color: #3cb371; }
-        .color-4 { background-color: #20b2aa; }
 
         /* ===== Адаптив для телефонов ===== */
         @media (max-width: 768px) {
@@ -403,10 +383,46 @@
             .map-title { font-size: 1.5rem; top: 10px; }
             .map-address { font-size: 1rem; top: 60px; }
             #map { height: 400px; }
-            .timeline-item { flex-direction: column !important; align-items: center; gap: 10px; }
-            .timeline-item .time { text-align: center !important; min-width: auto; }
-            .timeline-item .event { text-align: center !important; }
-            .timeline-photo { width: 70px; height: 100px; }
+            
+            /* Исправление для 5 слайда на телефоне */
+            #slide5 {
+                height: auto !important;
+                min-height: 100vh;
+                overflow-y: auto !important;
+                padding: 20px 10px;
+                display: flex;
+                align-items: flex-start;
+            }
+            #slide5 .slide-content {
+                padding: 10px 5px;
+                max-width: 100%;
+                gap: 10px;
+            }
+            .timeline {
+                gap: 20px;
+                padding: 10px 0;
+            }
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: center;
+                gap: 8px;
+                padding: 5px 0;
+            }
+            .timeline-item .time {
+                text-align: center !important;
+                min-width: auto;
+                font-size: 1.1rem;
+            }
+            .timeline-item .event {
+                text-align: center !important;
+                max-width: 100%;
+                padding: 0 5px;
+            }
+            .timeline-photo {
+                width: 70px;
+                height: 100px;
+                margin: 5px 0;
+            }
             .dresscode-title { font-size: 2.5rem; }
             .dresscode-text { font-size: 1rem; }
         }
@@ -428,7 +444,7 @@
 
     <!-- СЛАЙД 2 -->
     <section class="slide" id="slide2">
-        <img src="pictures/2_1.jpg" width="600" alt="Приветствие">
+        <img src="pictures/2_1.jpg" class="slide-bg" alt="Приветствие">
         <div class="slide-overlay"></div>
         <div class="slide-content">
             <div class="greeting-block">
@@ -489,7 +505,7 @@
 
     <!-- СЛАЙД 5 (Программа дня) -->
     <section class="slide" id="slide5">
-        <div class="slide-content" >
+        <div class="slide-content">
             <h2 class="program-title">Программа дня</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -498,7 +514,7 @@
                         <div class="event-title">Сбор гостей в ЗАГСе</div>
                         <div class="event-desc">Регистрация состоится в 11:00</div>
                     </div>
-                    <img src="pictures/5_1.jpg" class="timeline-photo" alt="Фото 1">
+                    <!-- <img src="pictures/5_1.jpg" class="timeline-photo" alt="Фото 1"> -->
                 </div>
                 <div class="timeline-item">
                     <div class="time">12:00</div>
@@ -506,7 +522,7 @@
                         <div class="event-title">Прогулка + фотосессия</div>
                         <div class="event-desc">12:00 - 13:40. Ловите яркие моменты вместе с нами</div>
                     </div>
-                    <img src="pictures/5_2.jpg" class="timeline-photo" alt="Фото 2">
+                    <!-- <img src="pictures/5_2.jpg" class="timeline-photo" alt="Фото 2"> -->
                 </div>
                 <div class="timeline-item">
                     <div class="time">14:00</div>
@@ -514,7 +530,7 @@
                         <div class="event-title">Начало банкета</div>
                         <div class="event-desc">Ждем всех в ресторане "Лалаленд"</div>
                     </div>
-                    <img src="pictures/5_3.jpg" class="timeline-photo" alt="Фото 3">
+                    <!-- <img src="pictures/5_3.jpg" class="timeline-photo" alt="Фото 3"> -->
                 </div>
                 <div class="timeline-item">
                     <div class="time">21:00</div>
@@ -522,7 +538,7 @@
                         <div class="event-title">Окончание вечера</div>
                         <div class="event-desc">21:00. Спасибо, что были с нами в этот день</div>
                     </div>
-                    <img src="pictures/test5_4.jpg" class="timeline-photo" alt="Фото 4">
+                    <!-- <img src="pictures/5_4.jpg" class="timeline-photo" alt="Фото 4"> -->
                 </div>
             </div>
         </div>
